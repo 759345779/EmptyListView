@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.majinxin1.emptylistview.MainActivity">
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="列表为空" />
+
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+
+
+    <com.example.majinxin1.emptylistview.MyView
+        android:id="@+id/myview"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_empty"
+        android:layout_toEndOf="@+id/tv_empty">
+
+    </com.example.majinxin1.emptylistview.MyView>
+    <Button
+        android:layout_below="@id/myview"
+        android:id="@+id/buttn"
+        android:text="打开第二个action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.example.majinxin1.emptylistview.SearchView
+        android:layout_width="150dp"
+        android:layout_height="150dp"></com.example.majinxin1.emptylistview.SearchView>
+</RelativeLayout>

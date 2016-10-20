@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EmptyListView</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text2">EXAMPLE2</string>
+    <string name="appwidget_text3">EXAMPLE3</string>
+    <string name="add_widget">Add widget</string>
+</resources>

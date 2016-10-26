@@ -59,8 +59,8 @@ public class DragUISwitch extends UISwitch implements OnTouchListener,View.OnCli
 	private void init() {
 		setSwitchOn(R.drawable.switch_on);
 		setSwitchOff(R.drawable.switch_off);
-		bitmap_slip_btn = BitmapFactory.decodeResource(getResources(),
-				R.drawable.switch_thumb);
+		bitmap_slip_btn = UISwitch.bigCircle(BitmapFactory.decodeResource(getResources(),
+				R.drawable.switch_thumb));
 		Btn_On = new Rect(0, 0, bitmap_slip_btn.getWidth(), bitmap_slip_btn.getHeight());
 		Btn_Off = new Rect(bitmap_bg_on.getWidth() - bitmap_slip_btn.getWidth(), 0,
 				bitmap_bg_on.getWidth(), bitmap_slip_btn.getHeight());
@@ -262,8 +262,8 @@ public class DragUISwitch extends UISwitch implements OnTouchListener,View.OnCli
 	
 	/**由switch_off这张图片来决定view的大小*/
 	private void setLayoutSize(){
-		Bitmap bm = BitmapFactory.decodeResource(getResources(),
-		R.drawable.switch_on);
+		Bitmap bm = big(BitmapFactory.decodeResource(getResources(),
+		R.drawable.switch_on));
 		height = bm.getHeight();
 		width = bm.getWidth();
 		bm.recycle();

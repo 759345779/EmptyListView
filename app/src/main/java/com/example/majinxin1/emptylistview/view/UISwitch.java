@@ -7,6 +7,7 @@ package com.example.majinxin1.emptylistview.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -15,6 +16,8 @@ import android.view.View;
  */
 public class UISwitch extends View {
 
+    private static float scaleHeigh =2.0f;
+    private static float scaleWidth =2.5f;
     protected Bitmap bitmap_bg_on, bitmap_bg_off;
 
     protected boolean mChecked;
@@ -66,11 +69,25 @@ public class UISwitch extends View {
     }
 
     public void setSwitchOff(int resourceId){
-        bitmap_bg_off = BitmapFactory.decodeResource(getResources(), resourceId);
+        bitmap_bg_off =  big(BitmapFactory.decodeResource(getResources(), resourceId));
     }
 
     public void setSwitchOn(int resourceId){
-        bitmap_bg_on = BitmapFactory.decodeResource(getResources(), resourceId);
+
+        bitmap_bg_on = big(BitmapFactory.decodeResource(getResources(), resourceId));
+
     }
 
+    public static Bitmap big(Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeigh);
+        Bitmap resizeBmp=Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+        return resizeBmp;
+    }
+    public static Bitmap bigCircle(Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleHeigh, scaleHeigh);
+        Bitmap resizeBmp=Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+        return resizeBmp;
+    }
 }

@@ -24,6 +24,7 @@
 
 
     <com.example.majinxin1.emptylistview.MyView
+        android:visibility="gone"
         android:id="@+id/myview"
 
         android:layout_width="match_parent"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content" />
 
     <com.example.majinxin1.emptylistview.SearchView
+        android:visibility="gone"
         android:layout_width="150dp"
         android:layout_height="150dp"></com.example.majinxin1.emptylistview.SearchView>
 </RelativeLayout>

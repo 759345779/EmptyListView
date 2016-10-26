@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         listview.addHeaderView(header);
         listview.addFooterView(footer);
         listview.setAdapter(new MyAdapter());
-        Log.i("app_widget_test", "onCreate");
+        Log.i("app_widget_test", "onCreate");*/
         findViewById(R.id.buttn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });*/
+        });
 
     }
     class MyAdapter extends BaseAdapter{

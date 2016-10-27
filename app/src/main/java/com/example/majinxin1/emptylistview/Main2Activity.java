@@ -9,35 +9,73 @@ import android.text.LoginFilter;
 import android.util.Log;
 import android.view.View;
 
+import com.example.majinxin1.emptylistview.view.BitmapUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main2Activity extends AppCompatActivity {
     private static String imagePath = "/storage/emulated/0/tencent/QQfile_recv/desk.png";
     private static String path_text = "/storage/emulated/0/majinxin/desk2.png";
+    private static String path_text2 = "/storage/emulated/0/majinxin/desk3.png";
+    private static String baseFile = null;
+    private static String caheFile = "/majinxin";
+    private static String caheFile2 = "/majinxin2";
+    File file1;
+    File file2;
     private Bitmap loadedImage;
     private Bitmap pressedImage;
     private Bitmap loadedImage2;
+    ExecutorService executorService;
+    private boolean fileCacheIsInit = false;
+    private int nameCount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        executorService = Executors.newSingleThreadExecutor();
+        File file = Environment.getExternalStorageDirectory();
+        baseFile = file.getPath();
+        file1 = new File(baseFile+caheFile);
+        file2 = new File(baseFile+caheFile2);
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                fileCacheIsInit=initCacheFile();
+                Log.i("file_info", "init finished=" + fileCacheIsInit);
+            }
+        });
+
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadImage(imagePath);
-                loadImage2(path_text);
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        nameCount++;
+                        String createBasePath = baseFile + caheFile ;
+                        String crearedfile=BitmapUtils.compressPicture(imagePath, createBasePath,nameCount+"");
+                        Log.i("file_info", "press finished ="+crearedfile);
+                    }
+                });
+//                getFilePathInfo();
+//                loadImage(imagePath);
+//                loadImage2(path_text);
 //                getStoragePath();
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {//质量压缩图片
             @Override
             public void onClick(View v) {
-                pressedImage = pressImage();
+
+//                pressedImage = pressImage();
             }
         });
 
@@ -48,6 +86,17 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
     }
+
+    private void getFilePathInfo() {
+
+        Log.i("file_info", "file1=" + file1.exists() + "file2=" + file2.exists());
+//        if(!file2.exists()){
+//            boolean mkdirIs=file2.mkdir();
+//            Log.i("file_info", "mkdirIs=" + mkdirIs);
+//        }
+
+    }
+
 
     private void loadImage2(final String path_text) {
         new Thread(new Runnable() {
@@ -101,7 +150,7 @@ public class Main2Activity extends AppCompatActivity {
 
     private Bitmap compressImage(Bitmap image, String outPath) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
         while (baos.toByteArray().length / 1024 / 1024 > 1) {//循环判断如果压缩后图片是否大于100kb,大于继续压缩
 
@@ -143,5 +192,21 @@ public class Main2Activity extends AppCompatActivity {
         File file2 = new File(path_text);
         Log.i("file_test", "file1_info_totalspace1=" + file1.getTotalSpace());
         Log.i("file_test", "file1_info_totalspace2=" + file2.getTotalSpace());
+    }
+
+    private boolean initCacheFile() {//清空压缩图片的文件夹或者创建文件夹
+        if(file1.exists()){
+            if (file1.isDirectory()) {
+                File[] files = file1.listFiles();//声明目录下所有的文件 files[];
+                for (int i = 0;i < files.length;i ++) {//遍历目录下所有的文件
+                    files[i].delete();//将文件夹下面文件全部删除
+                }
+            }
+            return true;
+        }else {
+            boolean mkdirIs=file1.mkdir();
+            return  mkdirIs;
+        }
+
     }
 }

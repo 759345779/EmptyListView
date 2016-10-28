@@ -10,4 +10,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.majinxin1.emptylistview.PermissionActivity">
 
+    <Button
+        android:text="CheckPermision"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="442dp"
+        android:id="@+id/bt_check_permission" />
+
+    <Button
+        android:text="requestPermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="59dp"
+        android:id="@+id/bt_request_permission" />
 </RelativeLayout>

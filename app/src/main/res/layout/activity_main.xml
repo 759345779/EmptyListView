@@ -16,7 +16,7 @@
 
 
     <ListView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
@@ -35,6 +35,7 @@
 
     </com.example.majinxin1.emptylistview.MyView>
     <Button
+        android:visibility="gone"
         android:layout_below="@id/myview"
         android:id="@+id/buttn"
         android:text="打开第二个action"

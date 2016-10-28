@@ -1,13 +1,16 @@
 package com.example.majinxin1.emptylistview;
 
+import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,12 +19,15 @@ public class MainActivity extends AppCompatActivity {
     ListView listview;
     TextView tv_empty;
     ActionBar actionBar;
+    String[] strNames={"Main2Activity","PermissonActivity"};
+    LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*listview = (ListView) findViewById(R.id.listview);
-        tv_empty = (TextView) findViewById(R.id.tv_empty);
+        listview = (ListView) findViewById(R.id.listview);
+        inflater = LayoutInflater.from(this);
+       /* tv_empty = (TextView) findViewById(R.id.tv_empty);
         TextView header = new TextView(this);
         header.setText("这是一个头");
         TextView footer = new TextView(this);
@@ -31,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         listview.addFooterView(footer);
         listview.setAdapter(new MyAdapter());
         Log.i("app_widget_test", "onCreate");*/
+        listview.setAdapter(new MyAdapter());
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openActivity(position);
+            }
+        });
         findViewById(R.id.buttn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,29 +54,48 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void openActivity(int position) {
+        switch (position) {
+            case 0:
+                openActivity(Main2Activity.class);
+                break;
+            case 1:
+                openActivity(PermissionActivity.class);
+                break;
+        }
+    }
+
+    private void openActivity(Class activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+
+    }
     class MyAdapter extends BaseAdapter{
 
         @Override
         public int getCount() {
-            return 0;
+            return strNames.length;
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return strNames[position];
         }
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView textView = new TextView(MainActivity.this);
-            textView.setText("这是内容");
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.item, null);
+            }
+            ((TextView)(convertView.findViewById(R.id.tv_item))).setText(strNames[position]);
 
-            return textView;
+            return convertView;
         }
     }
 

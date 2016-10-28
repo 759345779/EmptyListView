@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.majinxin1.emptylistview.view.BitmapUtils;
+import com.example.majinxin1.emptylistview.view.DragUISwitch;
+import com.example.majinxin1.emptylistview.view.UISwitch;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,7 +23,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main2Activity extends AppCompatActivity {
-    private static String imagePath = "/storage/emulated/0/tencent/QQfile_recv/desk.png";
+//    private static String imagePath = "/storage/emulated/0/tencent/QQfile_recv/desk.png";
+    private static String imagePath = "/storage/emulated/0/Download/wpsmail/abcd.jpg";
     private static String path_text = "/storage/emulated/0/majinxin/desk2.png";
     private static String path_text2 = "/storage/emulated/0/majinxin/desk3.png";
     private static String baseFile = null;
@@ -35,10 +38,25 @@ public class Main2Activity extends AppCompatActivity {
     ExecutorService executorService;
     private boolean fileCacheIsInit = false;
     private int nameCount = 0;
+    DragUISwitch drag_switch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        drag_switch = (DragUISwitch) findViewById(R.id.drag_switch);
+        drag_switch.setOnChangedListener(new UISwitch.OnChangedListener() {
+            @Override
+            public void onChanged(boolean CheckState) {
+                Log.i("drag_button", "drag_switch1=" + CheckState);
+                Log.i("drag_button", "drag_switch2=" + drag_switch.isChecked());
+            }
+        });
+        drag_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                getIsCheckedState();
+            }
+        });
         executorService = Executors.newSingleThreadExecutor();
         File file = Environment.getExternalStorageDirectory();
         baseFile = file.getPath();
@@ -85,6 +103,10 @@ public class Main2Activity extends AppCompatActivity {
                 getFileInfo();
             }
         });
+    }
+
+    private void getIsCheckedState() {
+        Log.i("drag_button", "drag_switch=" + drag_switch.isChecked());
     }
 
     private void getFilePathInfo() {
@@ -209,4 +231,6 @@ public class Main2Activity extends AppCompatActivity {
         }
 
     }
+
+
 }

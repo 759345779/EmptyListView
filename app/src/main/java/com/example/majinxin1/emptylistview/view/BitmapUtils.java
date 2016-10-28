@@ -15,11 +15,24 @@ import java.util.Collections;
  */
 
 public class BitmapUtils {
+    //进行图片的尺寸压缩
+    /**
+     *
+     * @param srcPath 需要压缩图片的路径,如：/sdcard/srcfile/srcpicture.png
+     * @param desPath 压缩后图片的保存文件夹得路径，如：/sdcard/file
+     * @param fileName 压缩后文件保存name不包括路径，如：picture
+     * @return 返回为压缩后图片的路径包括name和图片后缀，如：/sdcard/file/picture.png
+     */
     public static String compressPicture(String srcPath, String desPath,String fileName) {
         boolean isPNG = false;
         String suffix = null;
         String desfileFullPath = null;
         File file = new File(srcPath);
+        if (file != null && file.isFile()) {
+            if (file.length() < 102400) return null;//小于100kb不做处理
+        }else {
+            return null;//文件不存在或者不是文件的情况下不做处理
+        }
         String name = file.getName();
         if (name.contains(".")) {
             int index = name.lastIndexOf(".");
@@ -29,8 +42,7 @@ public class BitmapUtils {
             }else {
                 isPNG =false;
             }
-            Log.i("file_info", "filename=" + file.getName());
-            Log.i("file_info", "string suffix=" + suffix);
+
         }
         desfileFullPath = desPath + "/" + fileName + suffix;
 
@@ -45,25 +57,16 @@ public class BitmapUtils {
         // 缩放图片的尺寸
         float w = op.outWidth;
         float h = op.outHeight;
-        Log.i("picture_info", "w = " + w + "   h = " + h);
 
-        float hh = 1024f;//
-        float ww = 1024f;//
-        // 最长宽度或高度1024
-        float be = 2.0f;
-       /* if (w > h && w > ww) {
-            be = (float) (w / ww);
-        } else if (w < h && h > hh) {
-            be = (float) (h / hh);
+        if (w < 100 || h < 100) {//任何一条边的像素值小于100的情况下不做处理
+            return null;
         }
-        if (be <= 0) {
-            be = 1.0f;
-        }*/
+
+        float be = 2.0f;//压缩比例参数
+
         op.inSampleSize = (int) be;// 设置缩放比例,这个数字越大,图片大小越小.
         // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
         bitmap = BitmapFactory.decodeFile(srcPath, op);
-        /*boolean temp = true;
-        if(temp) return;*/
 
         int desWidth = (int) (w / be);
         int desHeight = (int) (h / be);
@@ -76,7 +79,6 @@ public class BitmapUtils {
                 }else {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

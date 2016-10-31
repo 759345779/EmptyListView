@@ -44,7 +44,7 @@ public class BitmapUtils {
             }
 
         }
-        desfileFullPath = desPath + "/" + fileName + suffix;
+        desfileFullPath = desPath + "/" + file.getName();
 
         FileOutputStream fos = null;
         BitmapFactory.Options op = new BitmapFactory.Options();

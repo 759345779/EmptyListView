@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listview;
     TextView tv_empty;
     ActionBar actionBar;
-    String[] strNames={"Main2Activity","PermissonActivity"};
+    String[] strNames = {"Main2Activity", "PermissonActivity", "ExcutoersTestActivity"};
     LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 openActivity(PermissionActivity.class);
+                break;
+            case 2:
+                openActivity(ExcutoersTestActivity.class);
                 break;
         }
     }

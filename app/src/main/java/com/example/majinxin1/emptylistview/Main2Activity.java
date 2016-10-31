@@ -92,7 +92,8 @@ public class Main2Activity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {//质量压缩图片
             @Override
             public void onClick(View v) {
-
+                File file3 = new File("/storage/emulated/0/tencent/QQfile_recv/desk.png");
+                Log.i("file_info", "filename ="+file3.getName());
 //                pressedImage = pressImage();
             }
         });

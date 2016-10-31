@@ -9,13 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 
 public class PermissionActivity extends AppCompatActivity {
-
+    ImageView image_loading;
+    RotateAnimation rotateAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
+        rotateAnim = new RotateAnimation(0, 359, Animation.RELATIVE_TO_SELF,  0.5f,Animation.RELATIVE_TO_SELF,  0.5f);
+        rotateAnim.setRepeatCount(-1);
+        rotateAnim.setDuration(1000);
+
+        image_loading = (ImageView) findViewById(R.id.image_loading);
         findViewById(R.id.bt_check_permission).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,6 +37,24 @@ public class PermissionActivity extends AppCompatActivity {
                 requestPermission();
             }
         });
+
+        findViewById(R.id.bt_image_loading).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                starOrStopLoading();
+            }
+        });
+    }
+
+    private void starOrStopLoading() {
+        if (image_loading.getVisibility() == View.VISIBLE) {
+            image_loading.setVisibility(View.INVISIBLE);
+            image_loading.clearAnimation();
+        }else {
+            image_loading.setVisibility(View.VISIBLE);
+            image_loading.startAnimation(rotateAnim);
+        }
+
     }
 
     private void requestPermission() {

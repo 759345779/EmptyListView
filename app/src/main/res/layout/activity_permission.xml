@@ -29,4 +29,21 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="59dp"
         android:id="@+id/bt_request_permission" />
+
+    <Button
+        android:text="start/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_request_permission"
+        android:layout_alignLeft="@+id/bt_request_permission"
+        android:layout_alignStart="@+id/bt_request_permission"
+        android:layout_marginTop="29dp"
+        android:id="@+id/bt_image_loading" />
+    <ImageView
+        android:visibility="invisible"
+        android:layout_below="@id/bt_image_loading"
+        android:id="@+id/image_loading"
+        android:background="@drawable/ic_spinner_inner_holo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"></ImageView>
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.majinxin1.emptylistview;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -120,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
                     AppWidgetManager.INVALID_APPWIDGET_ID);
             Log.i("app_widget_test", "app_widget_id="+ mAppWidgetId);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Log.i("config", newConfig.toString());
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override

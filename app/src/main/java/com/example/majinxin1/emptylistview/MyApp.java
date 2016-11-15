@@ -27,8 +27,6 @@ public class MyApp extends Application {
     public  float getFontSize() {
         Configuration mCurConfig = new Configuration();
         mCurConfig.updateFrom(this.getResources().getConfiguration());
-
-        Log.w(TAG, "getFontSize(), Font size is " + mCurConfig.fontScale);
         return mCurConfig.fontScale;
 
     }

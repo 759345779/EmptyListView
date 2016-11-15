@@ -38,6 +38,7 @@ public class NewAppWidget extends AppWidgetProvider {
         mmintent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text3, mmintent);
         // Instruct the widget manager to update the widget
+        
         Log.i("putExtra appWidgetId", "appWidgetId=" + appWidgetId);
         Intent gridIntent = new Intent();
         gridIntent.setAction(LISTVIEW_ACTION);

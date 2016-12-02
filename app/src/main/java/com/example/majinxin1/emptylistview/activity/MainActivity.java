@@ -1,11 +1,9 @@
-package com.example.majinxin1.emptylistview;
+package com.example.majinxin1.emptylistview.activity;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,16 +14,20 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.majinxin1.emptylistview.R;
+import com.example.majinxin1.emptylistview.WidgetService;
+
+public class MainActivity extends BaseActivity {
     ListView listview;
     TextView tv_empty;
-    ActionBar actionBar;
-    String[] strNames = {"Main2Activity", "PermissonActivity", "ExcutoersTestActivity"};
+    String[] strNames = {"Main2Activity", "PermissonActivity", "ExcutoersTestActivity","getWidgetManagerTest"};
     LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar=getActionBar();
+//        actionBar.hide();
         listview = (ListView) findViewById(R.id.listview);
         inflater = LayoutInflater.from(this);
        /* tv_empty = (TextView) findViewById(R.id.tv_empty);
@@ -67,7 +69,17 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 openActivity(ExcutoersTestActivity.class);
                 break;
+            case 3:
+                getWidgetManaget();
+                break;
         }
+    }
+
+    private void getWidgetManaget() {
+        WidgetService.mCount++;
+        WidgetService.itemStr.add("添加=" + WidgetService.mCount);
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        sendBroadcast(intent);
     }
 
     private void openActivity(Class activity) {

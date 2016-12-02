@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:configChanges="orientation|keyboard"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,9 +40,9 @@
             android:exported="true"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".PermissionActivity" />
-        <activity android:name=".ExcutoersTestActivity"></activity>
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.PermissionActivity" />
+        <activity android:name=".activity.ExcutoersTestActivity"></activity>
     </application>
 
 </manifest>

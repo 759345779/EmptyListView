@@ -1,14 +1,14 @@
-package com.example.majinxin1.emptylistview;
+package com.example.majinxin1.emptylistview.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.view.View;
 
+import com.example.majinxin1.emptylistview.R;
+import com.example.majinxin1.emptylistview.activity.BaseActivity;
 import com.example.majinxin1.emptylistview.view.BitmapUtils;
 import com.example.majinxin1.emptylistview.view.DragUISwitch;
 import com.example.majinxin1.emptylistview.view.UISwitch;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends BaseActivity {
 //    private static String imagePath = "/storage/emulated/0/tencent/QQfile_recv/desk.png";
     private static String imagePath = "/storage/emulated/0/Download/wpsmail/abcd.jpg";
     private static String path_text = "/storage/emulated/0/majinxin/desk2.png";

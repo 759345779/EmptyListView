@@ -7,11 +7,11 @@
     <application
         android:name=".MyApp"
         android:allowBackup="true"
+        android:configChanges="orientation|keyboard"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:configChanges="orientation|keyboard"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -42,7 +42,8 @@
 
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.PermissionActivity" />
-        <activity android:name=".activity.ExcutoersTestActivity"></activity>
+        <activity android:name=".activity.ExcutoersTestActivity" />
+        <activity android:name=".activity.PetelleTestActivity"></activity>
     </application>
 
 </manifest>

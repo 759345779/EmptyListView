@@ -5,5 +5,5 @@ import android.app.Activity;
 /**
  * Created by MAJINXIN1 on 2016/12/2.
  */
-public class BaseActivity extends Activity{
+public class BaseActivity extends Activity  {
 }

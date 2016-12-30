@@ -20,7 +20,7 @@ import com.example.majinxin1.emptylistview.WidgetService;
 public class MainActivity extends BaseActivity {
     ListView listview;
     TextView tv_empty;
-    String[] strNames = {"Main2Activity", "PermissonActivity", "ExcutoersTestActivity","getWidgetManagerTest"};
+    String[] strNames = {"Main2Activity", "PermissonActivity", "ExcutoersTestActivity","getWidgetManagerTest","PatelleTest"};
     LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case 3:
                 getWidgetManaget();
+                break;
+            case 4:
+                openActivity(PetelleTestActivity.class);
                 break;
         }
     }

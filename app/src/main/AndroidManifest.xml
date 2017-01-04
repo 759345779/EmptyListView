@@ -43,7 +43,10 @@
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.PermissionActivity" />
         <activity android:name=".activity.ExcutoersTestActivity" />
-        <activity android:name=".activity.PetelleTestActivity"></activity>
+        <activity android:name=".activity.PetelleTestActivity" />
+        <activity android:name=".activity.ActionBarDemoActivity" />
+        <activity android:name=".activity.ToolBarActivity" />
+        <activity android:name=".activity.ScrollTestActivity"></activity>
     </application>
 
 </manifest>

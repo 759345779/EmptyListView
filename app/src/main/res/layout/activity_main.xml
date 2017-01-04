@@ -5,45 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
-
-    <TextView
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:id="@+id/tv_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="列表为空" />
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+    </android.support.v7.widget.Toolbar>
 
     <ListView
+        android:layout_below="@id/toolbar"
         android:visibility="visible"
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
-
-
-    <com.example.majinxin1.emptylistview.MyView
-        android:visibility="gone"
-        android:id="@+id/myview"
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tv_empty"
-        android:layout_toEndOf="@+id/tv_empty">
-
-    </com.example.majinxin1.emptylistview.MyView>
-    <Button
-        android:visibility="gone"
-        android:layout_below="@id/myview"
-        android:id="@+id/buttn"
-        android:text="打开第二个action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <com.example.majinxin1.emptylistview.SearchView
-        android:visibility="gone"
-        android:layout_width="150dp"
-        android:layout_height="150dp"></com.example.majinxin1.emptylistview.SearchView>
 </RelativeLayout>

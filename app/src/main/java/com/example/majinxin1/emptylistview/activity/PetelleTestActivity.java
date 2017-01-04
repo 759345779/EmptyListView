@@ -29,27 +29,33 @@ public class PetelleTestActivity extends Activity {
         listView = (ListView) findViewById(R.id.list_view);
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.window_icon);
         Palette palette = Palette.from(bitmap).generate();
-        int colorVibrant = palette.getVibrantColor(Color.WHITE);
-        int colorVibrantDark = palette.getDarkVibrantColor(Color.WHITE);
-        int colorVibrantLight = palette.getLightVibrantColor(Color.WHITE);
-        int colorMuted = palette.getMutedColor(Color.WHITE);
-        int colorMutedDark = palette.getDarkMutedColor(Color.WHITE);
-        int colorMuteLight = palette.getLightMutedColor(Color.WHITE);
-        ArrayList<Integer> colorList = new ArrayList<>();
-        colorList.add(colorVibrant);
-        colorList.add(colorVibrantDark);
-        colorList.add(colorVibrantLight);
-        colorList.add(colorMuted);
-        colorList.add(colorMutedDark);
-        colorList.add(colorMuteLight);
+        Palette.Swatch colorVibSwatch = palette.getVibrantSwatch();
+        Palette.Swatch colorVibDarSwatch = palette.getDarkVibrantSwatch();
+        Palette.Swatch colorVibLigSwatch = palette.getLightVibrantSwatch();
+        Palette.Swatch colorMuSwatch = palette.getMutedSwatch();
+        Palette.Swatch colorMuDarSwatch = palette.getDarkMutedSwatch();
+        Palette.Swatch colorMulLigSwatch = palette.getLightMutedSwatch();
+        /*int colorVibrant = colorVibSwatch.getRgb();
+        int colorVibrantDark = colorVibDarSwatch.getRgb();
+        int colorVibrantLight = colorVibLigSwatch.getRgb();
+        int colorMuted = colorMuSwatch.getRgb();
+        int colorMutedDark = colorMuDarSwatch.getRgb();
+        int colorMuteLight = colorMulLigSwatch.getRgb();*/
+        ArrayList< Palette.Swatch> colorList = new ArrayList<>();
+        colorList.add(colorVibSwatch);
+        colorList.add(colorVibDarSwatch);
+        colorList.add(colorVibLigSwatch);
+        colorList.add(colorMuSwatch);
+        colorList.add(colorMuDarSwatch);
+        colorList.add(colorMulLigSwatch);
         listView.setAdapter(new MyAdapter(colorList));
 
     }
 
     class MyAdapter extends BaseAdapter {
-        List<Integer> list;
+        List<Palette.Swatch> list;
 
-        public MyAdapter(List<Integer> list) {
+        public MyAdapter(List<Palette.Swatch> list) {
             this.list = list;
         }
 
@@ -75,8 +81,11 @@ public class PetelleTestActivity extends Activity {
                 convertView = LayoutInflater.from(PetelleTestActivity.this).inflate(R.layout.item01, null);
             }
             TextView textView = (TextView) convertView.findViewById(R.id.tv_content);
-            if (position < list.size()) {
-                textView.setBackgroundColor(list.get(position));
+            if (position < list.size() && list.get(position)!=null) {
+                textView.setBackgroundColor(list.get(position).getRgb());
+                textView.setTextColor(list.get(position).getBodyTextColor());
+            }else {
+                textView.setText("default");
             }
             textView.setText(getContent(position));
             return convertView;

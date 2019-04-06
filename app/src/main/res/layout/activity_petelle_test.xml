@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.majinxin1.emptylistview.activity.PetelleTestActivity">
+    <ImageView
+        android:id="@+id/im_windows_icon"
+        android:src="@drawable/window_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:layout_below="@id/im_windows_icon"
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</RelativeLayout>

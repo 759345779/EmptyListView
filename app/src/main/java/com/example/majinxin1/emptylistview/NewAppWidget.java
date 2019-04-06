@@ -3,12 +3,15 @@ package com.example.majinxin1.emptylistview;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.example.majinxin1.emptylistview.activity.MainActivity;
 
 /**
  * Implementation of App Widget functionality.
@@ -16,7 +19,7 @@ import android.widget.Toast;
 public class NewAppWidget extends AppWidgetProvider {
     public static final String CLICK_EXAMLPE_ACTION = "com.example.majinxin1.emptylistview_TWO";
     public static final String LISTVIEW_ACTION = "com.example.majinxin1.emptylistview_LISTVIEW";
-
+    private AppWidgetManager widgetManager;
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -38,6 +41,7 @@ public class NewAppWidget extends AppWidgetProvider {
         mmintent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text3, mmintent);
         // Instruct the widget manager to update the widget
+        
         Log.i("putExtra appWidgetId", "appWidgetId=" + appWidgetId);
         Intent gridIntent = new Intent();
         gridIntent.setAction(LISTVIEW_ACTION);
@@ -51,6 +55,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        widgetManager = appWidgetManager;
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
@@ -83,7 +88,35 @@ public class NewAppWidget extends AppWidgetProvider {
         if (action.equals(CLICK_EXAMLPE_ACTION)) {
             int id=intent.getIntExtra("widget_id", 0);
             Toast.makeText(context, "Click Button widget_id=" + id, Toast.LENGTH_SHORT).show();
+           /* WidgetService.mCount++;
+            WidgetService.itemStr.add("添加=" + WidgetService.mCount);
+            AppWidgetManager manager = getInstance(context);
+            if (manager == null) {
+                Log.i("manager", "manager=null");
+            }else {
+               manager .notifyAppWidgetViewDataChanged(id, 0);
+            }*/
         }
+        if(AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(action)){
+            final AppWidgetManager mgr = AppWidgetManager.getInstance(context);
+            final ComponentName cn = new ComponentName(context, NewAppWidget.class);
+            mgr.notifyAppWidgetViewDataChanged(mgr.getAppWidgetIds(cn), R.id.appwidget_text3);
+            Toast.makeText(context, "data change", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+    }
+
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        super.onDeleted(context, appWidgetIds);
+    }
+
+    public static AppWidgetManager getInstance(Context context) {
+        return (AppWidgetManager) context.getSystemService(Context.APPWIDGET_SERVICE);
     }
 }
 

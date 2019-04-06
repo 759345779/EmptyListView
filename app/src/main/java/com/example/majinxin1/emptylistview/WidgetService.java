@@ -16,15 +16,16 @@ import java.util.List;
 public class WidgetService extends RemoteViewsService {
 
     public static final String EXTRA_ITEM = "com.example.android.stackwidget.EXTRA_ITEM";
-
+    public static  List<String> itemStr = new ArrayList<>();
+    public static  int mCount = 0;
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new StackRemoteViewsFactory(getApplicationContext(), intent);
     }
 
     class StackRemoteViewsFactory implements RemoteViewsFactory{
-        private static final int mCount = 10;
-        private List<String> itemStr = new ArrayList<>();
+
+
         private Context mContext;
         private int mAppWidgetId;
 
@@ -38,14 +39,14 @@ public class WidgetService extends RemoteViewsService {
 
         @Override
         public void onCreate() {
-            for (int  i=0;i<mCount;i++) {
-                itemStr.add("数据条数=" + i);
-            }
-            try {
+            mCount++;
+            itemStr.add("数据条数=" + mCount);
+
+           /* try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         @Override

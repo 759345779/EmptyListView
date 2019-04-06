@@ -1,9 +1,11 @@
-package com.example.majinxin1.emptylistview;
+package com.example.majinxin1.emptylistview.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import com.example.majinxin1.emptylistview.R;
+import com.example.majinxin1.emptylistview.activity.BaseActivity;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -11,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class ExcutoersTestActivity extends AppCompatActivity {
+public class ExcutoersTestActivity extends BaseActivity {
     ExecutorService excutor = null;
     Runnable runnable = null;
     Future<Boolean> future = null;
